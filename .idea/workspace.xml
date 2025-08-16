@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a9c0569-fef5-4cde-babb-9b94f6bdcf5c" name="Changes" comment="" />
+    <list default="true" id="1a9c0569-fef5-4cde-babb-9b94f6bdcf5c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/arbitrage-contract/.github/workflows/test.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/arbitrage-contract/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/arbitrage-contract/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/arbitrage-contract/foundry.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/arbitrage-contract/foundry.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/arbitrage-contract/lib/forge-std" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/arbitrage-contract/script/Counter.s.sol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/arbitrage-contract/src/Counter.sol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/arbitrage-contract/test/Counter.t.sol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/openzeppelin-contracts/lib/halmos-cheatcodes" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/openzeppelin-contracts/lib/halmos-cheatcodes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/openzeppelin-contracts/lib/halmos-cheatcodes/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/openzeppelin-contracts/lib/halmos-cheatcodes/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SVM.sol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/SymTest.sol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foundry.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/openzeppelin-contracts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/protocol-v2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/v2-periphery" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,22 +38,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "payman-kh"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;payman-kh&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/payman-kh/simple-arbitrage-flashloan-bot.git",
-    "accountId": "6e6f3d0c-ba0f-4691-90c3-302685dcd4ec"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/payman-kh/simple-arbitrage-flashloan-bot.git&quot;,
+    &quot;accountId&quot;: &quot;6e6f3d0c-ba0f-4691-90c3-302685dcd4ec&quot;
   }
-}]]></component>
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="D:\php\php.exe" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="31NKydufVzN3iOgE79F0ibNtXri" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -41,8 +63,10 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/Arbitrage Bots/SimpleArbitrageFlashloanBot",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -66,7 +90,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1755359345687</updated>
-      <workItem from="1755359347087" duration="2057000" />
+      <workItem from="1755359347087" duration="4668000" />
+      <workItem from="1755364999835" duration="747000" />
     </task>
     <servers />
   </component>
