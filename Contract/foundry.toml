@@ -3,4 +3,9 @@ src = "src"
 out = "out"
 libs = ["lib"]
 
-# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+
+polygon = "https://polygon-mumbai.g.alchemy.com/v2/c0021027eaf745f399379718cafc4e8c"
+bnb = "https://bsc-testnet-rpc.publicnode.com"
+
+# [etherscan]
+# api_key = "${ETHERSCAN_API_KEY}"
