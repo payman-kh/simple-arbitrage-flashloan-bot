@@ -8,6 +8,7 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "NodeNext",
+    "type": "module",
     "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "resolveJsonModule": true,
