@@ -4,16 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a9c0569-fef5-4cde-babb-9b94f6bdcf5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Bot/src/abi/Arbitrage.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bot/src/config/chains.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bot/src/helpers/factory.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bot/src/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bot/src/trade.ts" afterDir="false" />
+    <list default="true" id="1a9c0569-fef5-4cde-babb-9b94f6bdcf5c" name="Changes" comment="refactored chain configuration, added DEX factory helpers, and updated environment setup">
+      <change afterPath="$PROJECT_DIR$/Bot/src/config/aave.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/config/dexes.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/config/tokens.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/data/Arbitrage.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/demo.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/services/arbitrage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/services/contract.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/services/prices.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/services/provider.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/services/scanner.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/utils/encoding.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/.env" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/chains.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/abi/Arbitrage.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/config/chains.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/config/chains.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/helpers/factory.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/trade.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,29 +55,35 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="31NKydufVzN3iOgE79F0ibNtXri" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\PeymanKheirivonyoukn\\Desktop\\stuff\\projects\\ArbitrageBots\\SimpleArbitrageFlashloanBot\\Bot\\node_modules\\typescript\\lib&quot;,
-    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot/Contract/src/Arbitrage_2.sol&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot/Bot/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\PeymanKheirivonyoukn\\Desktop\\stuff\\projects\\ArbitrageBots\\SimpleArbitrageFlashloanBot\\Bot\\node_modules\\typescript\\lib",
+    "two.files.diff.last.used.file": "C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot/Contract/src/Arbitrage_2.sol",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src\Config" />
     </key>
@@ -94,11 +111,25 @@
       <workItem from="1755757988773" duration="3000" />
       <workItem from="1755788454028" duration="9377000" />
       <workItem from="1755853777657" duration="1000" />
-      <workItem from="1756143879435" duration="10851000" />
+      <workItem from="1756143879435" duration="11177000" />
+      <workItem from="1756220264251" duration="8372000" />
     </task>
+    <task id="LOCAL-00001" summary="refactored chain configuration, added DEX factory helpers, and updated environment setup">
+      <option name="closed" value="true" />
+      <created>1756160408318</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1756160408318</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="refactored chain configuration, added DEX factory helpers, and updated environment setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored chain configuration, added DEX factory helpers, and updated environment setup" />
   </component>
 </project>

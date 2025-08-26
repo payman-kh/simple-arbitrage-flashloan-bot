@@ -1,110 +1,119 @@
+import "dotenv/config";
 import { ethers } from "ethers";
-import { chains } from "./chain";
-import arbArtifact from "./artifacts/Arbitrage.json"; // adjust path to ABI
+import { provider, makeWallet } from "./services/provider.js";
+import { findSinglePairArb } from "./services/scanner.js";
+import { TOKENS, DECIMALS } from "./config/tokens.js";
+import { V2_ROUTERS } from "./config/dexes.js";
+import { AAVE } from "./config/aave.js";
+import { encodeTwoLegParams } from "./utils/encoding.js";
+import { aaveFlashArbCall } from "./services/arbitrage.js";
 
-// Load private key
-const PRIVATE_KEY = process.env.PRIVATE_KEY!;
-if (!PRIVATE_KEY) throw new Error("Missing PRIVATE_KEY");
+// Basic safety config
+const MIN_ABSOLUTE_PROFIT = "5";   // in base token units
+const TEST_NOT_BROADCAST = true;   // set false to actually send tx
+const FLASH_FEE_BIPS_V2_DEFAULT = 30; // 0.30% for v2-style flash swaps (not used for Aave)
 
-async function start() {
-    for (const chain of chains) {
-        const provider = new ethers.JsonRpcProvider(chain.rpc);
-        const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
-        const arb = new ethers.Contract(chain.arbitrage, arbArtifact.abi, wallet);
+// Which pairs + trial sizes to check
+const PAIRS = [
+    { base: "USDC", quote: "WETH", amount: "1000" }, // borrow 1,000 USDC
+    { base: "WETH", quote: "USDC", amount: "1" }     // borrow 1 WETH
+] as const;
 
-        console.log(`Bot connected to ${chain.name} as ${wallet.address}`);
+async function main() {
+    if (!process.env.RPC_URL_POLYGON) throw new Error("Missing RPC_URL_POLYGON");
+    const wallet = makeWallet();
 
-        await monitorChain(chain, arb, wallet);
+    let bestOpp: {
+        opp: Awaited<ReturnType<typeof findSinglePairArb>>;
+        base: keyof typeof TOKENS;
+        quote: keyof typeof TOKENS;
+    } | null = null;
+    let bestProfit = 0n;
+
+    // 🔍 Scan both borrow directions
+    for (const { base, quote, amount } of PAIRS) {
+        const opp = await findSinglePairArb(provider, base as any, quote as any, amount);
+        if (!opp) continue;
+
+        const gross = opp.expectedOut;
+        const amtIn = opp.amountIn;
+        const delta = gross - amtIn;
+
+        console.log(`[SCAN] Borrow ${base}: ${ethers.formatUnits(amtIn, DECIMALS[base])} -> Δ ${ethers.formatUnits(delta, DECIMALS[base])} ${base}`);
+
+        if (delta > bestProfit) {
+            bestProfit = delta;
+            bestOpp = { opp, base, quote };
+        }
+    }
+
+    if (!bestOpp) {
+        console.log("No arbitrage found in either direction.");
+        return;
+    }
+
+    const { opp, base, quote } = bestOpp;
+    const gross = opp.expectedOut;
+    const amtIn = opp.amountIn;
+    const delta = gross - amtIn;
+
+    console.log(`[ARB] Best opportunity: borrow ${base}, ${opp.direction} ${opp.buyOn} -> ${opp.sellOn}`);
+    console.log(` in:  ${ethers.formatUnits(amtIn, DECIMALS[base])} ${base}`);
+    console.log(` out: ${ethers.formatUnits(gross, DECIMALS[base])} ${base}`);
+    console.log(` diff:${ethers.formatUnits(delta, DECIMALS[base])} ${base}`);
+
+    // Build params for contract
+    const pathA = [TOKENS[base], TOKENS[quote]];
+    const pathB = [TOKENS[quote], TOKENS[base]];
+    const buyRouter = V2_ROUTERS[opp.buyOn];
+    const sellRouter = V2_ROUTERS[opp.sellOn];
+
+    // naive slippage: 0.3% buffer
+    const minOutA = (opp.leg1Out * 997n) / 1000n;
+    const minOutB = (opp.leg2Out * 997n) / 1000n;
+
+    const params = encodeTwoLegParams(
+        {
+            dexTypeA: 2,
+            routerA: buyRouter,
+            pathA,
+            minOutA: ethers.formatUnits(minOutA, DECIMALS[quote]),
+            dexTypeB: 2,
+            routerB: sellRouter,
+            pathB,
+            minOutB: ethers.formatUnits(minOutB, DECIMALS[base]),
+            profitToken: TOKENS[base],
+            minProfit: MIN_ABSOLUTE_PROFIT,
+            v2FlashFeeBips: FLASH_FEE_BIPS_V2_DEFAULT
+        },
+        {
+            minOutA: DECIMALS[quote],
+            minOutB: DECIMALS[base],
+            minProfit: DECIMALS[base]
+        }
+    );
+
+    // Choose flash-loan asset dynamically
+    const aavePool = AAVE.poolV3;
+    const asset = TOKENS[base];
+    const amount = amtIn;
+
+    if (TEST_NOT_BROADCAST) {
+        console.log("[DRY-RUN] Would call aaveFlashArb with:", {
+            aavePool,
+            asset,
+            amount: amount.toString(),
+            params
+        });
+    } else {
+        const tx = await aaveFlashArbCall(wallet, { aavePool, asset, amount, params });
+        console.log("Sent aaveFlashArb tx:", tx.hash);
+        const rec = await tx.wait();
+        console.log("Mined:", rec?.transactionHash);
     }
 }
 
-async function monitorChain(chain: any, arb: ethers.Contract, wallet: ethers.Wallet) {
-    console.log(`Monitoring ${chain.name} for arbitrage opportunities...`);
-
-    setInterval(async () => {
-        try {
-            // 🔎 Replace with your actual price/opportunity detection logic
-            const opportunityFound = Math.random() < 0.05; // 5% chance
-            if (!opportunityFound) return;
-
-            console.log(`[${chain.name}] Opportunity detected!`);
-
-            // Example params (must be filled with real trade data from your detection logic)
-            const params = {
-                dexTypeA: 2,
-                routerA: chain.routers.v2, // UniswapV2 router
-                pathA: ethers.AbiCoder.defaultAbiCoder().encode(
-                    ["address[]"],
-                    [[chain.tokens.USDC, chain.tokens.WETH]]
-                ),
-                minOutA: 0,
-
-                dexTypeB: 3,
-                routerB: chain.routers.v3, // UniswapV3 router
-                pathB: ethers.hexlify(
-                    ethers.concat([
-                        chain.tokens.WETH,
-                        ethers.toBeHex(3000, 3), // fee = 0.3%
-                        chain.tokens.USDC,
-                    ])
-                ),
-                minOutB: 0,
-
-                profitToken: chain.tokens.USDC,
-                minProfit: ethers.parseUnits("1", 6), // require at least 1 USDC profit
-
-                v2FlashFeeBips: 30, // 0.3%
-            };
-
-            const encodedParams = ethers.AbiCoder.defaultAbiCoder().encode(
-                [
-                    "tuple(uint8,address,bytes,uint256,uint8,address,bytes,uint256,address,uint256,uint16)"
-                ],
-                [[
-                    params.dexTypeA,
-                    params.routerA,
-                    params.pathA,
-                    params.minOutA,
-                    params.dexTypeB,
-                    params.routerB,
-                    params.pathB,
-                    params.minOutB,
-                    params.profitToken,
-                    params.minProfit,
-                    params.v2FlashFeeBips,
-                ]]
-            );
-
-            if (chain.name === "polygon") {
-                // Aave flash loan
-                const tx = await arb.aaveFlashArb(
-                    chain.aavePool,
-                    chain.tokens.USDC,
-                    ethers.parseUnits("1000", 6), // borrow 1000 USDC
-                    encodedParams
-                );
-                console.log(`[Polygon] Aave flashloan TX sent: ${tx.hash}`);
-                await tx.wait();
-                console.log(`[Polygon] TX confirmed.`);
-            }
-
-            if (chain.name === "bsc") {
-                // V2 flash swap (Pancake)
-                const tx = await arb.v2FlashArb(
-                    chain.pairs.USDC_WBNB,   // must exist in chain.ts
-                    chain.tokens.USDC,
-                    ethers.parseUnits("1000", 18), // borrow amount
-                    encodedParams
-                );
-                console.log(`[BSC] Pancake flashswap TX sent: ${tx.hash}`);
-                await tx.wait();
-                console.log(`[BSC] TX confirmed.`);
-            }
-
-        } catch (err: any) {
-            console.error(`[${chain.name}] Error:`, err.message || err);
-        }
-    }, 15_000); // every 15s
-}
-
-start().catch(console.error);
+main().catch((e) => {
+    console.error(e);
+    process.exit(1);
+});

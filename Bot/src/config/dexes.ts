@@ -1,0 +1,4 @@
+export const V2_ROUTERS = {
+    sushiswap: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    uniswap: "0xedf6066a2b290C185783862C7F4776A2C8077AD1"
+};
