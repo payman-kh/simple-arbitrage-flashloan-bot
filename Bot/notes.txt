@@ -1,0 +1,34 @@
+things to consider
+1. chains
+2. dexes
+3. dex layers/versions
+4. pairs
+5. gas/flashloan fees
+
+things to make dynamic
+1. borrow amount
+2. slippage buffer
+3. minimum profit threshold
+
+Same from the gpt:
+✅ Things to Consider (static / predefined choices in code)
+1. Chains – Polygon, Optimism, Arbitrum, BNB, later Ethereum.
+2. DEXes – Uniswap, Sushiswap (and possibly others later).
+3. DEX Versions – e.g., Uniswap V2 vs V3.
+4. Liquidity Pools / Pairs – which pairs to monitor (e.g., WETH/USDC, WETH/DAI).
+5. Gas Costs – per chain (they differ significantly).
+6. Flashloan Fees – e.g., Aave charges 0.09% per loan.
+7. Router & Pool Addresses – different per DEX & chain.
+8. Block Times / Finality Speed – affects arbitrage execution reliability.
+9. Arbitrage Path Type:
+    - 2-point (DEX A → DEX B)
+    - Triangular (DEX A Pair1 → Pair2 → Pair3 → back to Pair1).
+
+🔄 Things to Make Dynamic (calculated in real time)
+1. Borrow Amount – optimal loan size for maximum profit vs slippage.
+2. Slippage Buffer – to prevent losses from MEV/front-running.
+3. Minimum Profit Threshold – must be > (gas + flashloan fee + risk margin).
+4. Pool Liquidity Depth – ensures you don’t move the market too much.
+5. Execution Gas Limit – estimate & adapt depending on contract complexity.
+6. Routing Logic – best path across pairs and DEX versions (could shift per block).
+7. Price Feed Cross-Check – (optional) use Chainlink oracles to confirm no manipulation.

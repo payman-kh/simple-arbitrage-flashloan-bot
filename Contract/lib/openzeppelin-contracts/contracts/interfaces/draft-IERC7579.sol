@@ -141,7 +141,7 @@ interface IERC7579Execution {
 }
 
 /**
- * @dev ERC-7579 Account Config.
+ * @dev ERC-7579 Account config.
  *
  * Accounts should implement this interface to expose information that identifies the account, supported modules and capabilities.
  */
@@ -175,7 +175,7 @@ interface IERC7579AccountConfig {
 }
 
 /**
- * @dev ERC-7579 Module Config.
+ * @dev ERC-7579 Module config.
  *
  * Accounts should implement this interface to allow installing and uninstalling modules.
  */

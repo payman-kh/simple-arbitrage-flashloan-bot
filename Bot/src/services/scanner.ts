@@ -27,6 +27,7 @@ export async function findSinglePairArb(
     const B = "quickswap";
 
     const rA = V2_ROUTERS[A];
+    // @ts-ignore
     const rB = V2_ROUTERS[B];
 
     // base -> quote on A, then quote -> base on B
@@ -49,7 +50,7 @@ export async function findSinglePairArb(
         leg1B = leg1; leg2B = leg2; outB = leg2;
     } catch {}
 
-    // Choose better of the two
+    // Choose the better of the two
     const bestA = outA > amtIn ? {
         direction: "AtoB" as const,
         buyOn: A, sellOn: B,

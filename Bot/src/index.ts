@@ -1,23 +1,28 @@
 import "dotenv/config";
 import { ethers } from "ethers";
-import { provider, makeWallet } from "./services/provider.js";
-import { findSinglePairArb } from "./services/scanner.js";
 import { TOKENS, DECIMALS } from "./config/tokens.js";
+import {PAIRS} from "./config/pairs.js";
 import { V2_ROUTERS } from "./config/dexes.js";
 import { AAVE } from "./config/aave.js";
 import { encodeTwoLegParams } from "./utils/encoding.js";
+import { provider, makeWallet } from "./services/provider.js";
+import { findSinglePairArb } from "./services/scanner.js";
 import { aaveFlashArbCall } from "./services/arbitrage.js";
 
 // Basic safety config
 const MIN_ABSOLUTE_PROFIT = "5";   // in base token units
+/*
+// todo: make the minimum dynamic
+const gasCostInBase = estimateGasCost(provider, base); // gas in WETH or USDC
+const flashLoanFee = (amount * 5n) / 10000n; // Aave fee = 0.05%
+const buffer = (amount * 5n) / 10000n; // extra 0.05% safety margin
+
+const minProfit = gasCostInBase + flashLoanFee + buffer;
+* */
+
 const TEST_NOT_BROADCAST = true;   // set false to actually send tx
 const FLASH_FEE_BIPS_V2_DEFAULT = 30; // 0.30% for v2-style flash swaps (not used for Aave)
 
-// Which pairs + trial sizes to check
-const PAIRS = [
-    { base: "USDC", quote: "WETH", amount: "1000" }, // borrow 1,000 USDC
-    { base: "WETH", quote: "USDC", amount: "1" }     // borrow 1 WETH
-] as const;
 
 async function main() {
     if (!process.env.RPC_URL_POLYGON) throw new Error("Missing RPC_URL_POLYGON");
@@ -30,7 +35,8 @@ async function main() {
     } | null = null;
     let bestProfit = 0n;
 
-    // 🔍 Scan both borrow directions
+    // TODO: add the loop later
+    // 🔍 Scan both borrow-directions
     for (const { base, quote, amount } of PAIRS) {
         const opp = await findSinglePairArb(provider, base as any, quote as any, amount);
         if (!opp) continue;
@@ -39,10 +45,12 @@ async function main() {
         const amtIn = opp.amountIn;
         const delta = gross - amtIn;
 
+        // @ts-ignore
         console.log(`[SCAN] Borrow ${base}: ${ethers.formatUnits(amtIn, DECIMALS[base])} -> Δ ${ethers.formatUnits(delta, DECIMALS[base])} ${base}`);
 
         if (delta > bestProfit) {
             bestProfit = delta;
+            // @ts-ignore
             bestOpp = { opp, base, quote };
         }
     }
@@ -57,18 +65,20 @@ async function main() {
     const amtIn = opp.amountIn;
     const delta = gross - amtIn;
 
+    // @ts-ignore
     console.log(`[ARB] Best opportunity: borrow ${base}, ${opp.direction} ${opp.buyOn} -> ${opp.sellOn}`);
-    console.log(` in:  ${ethers.formatUnits(amtIn, DECIMALS[base])} ${base}`);
-    console.log(` out: ${ethers.formatUnits(gross, DECIMALS[base])} ${base}`);
-    console.log(` diff:${ethers.formatUnits(delta, DECIMALS[base])} ${base}`);
+    console.log(` in:   ${ethers.formatUnits(amtIn, DECIMALS[base])} ${base}`);
+    console.log(` out:  ${ethers.formatUnits(gross, DECIMALS[base])} ${base}`);
+    console.log(` diff: ${ethers.formatUnits(delta, DECIMALS[base])} ${base}`);
 
-    // Build params for contract
+    // Build params for the contract
     const pathA = [TOKENS[base], TOKENS[quote]];
     const pathB = [TOKENS[quote], TOKENS[base]];
     const buyRouter = V2_ROUTERS[opp.buyOn];
     const sellRouter = V2_ROUTERS[opp.sellOn];
 
     // naive slippage: 0.3% buffer
+    // todo: make the slippage buffer dynamic
     const minOutA = (opp.leg1Out * 997n) / 1000n;
     const minOutB = (opp.leg2Out * 997n) / 1000n;
 
@@ -93,7 +103,7 @@ async function main() {
         }
     );
 
-    // Choose flash-loan asset dynamically
+    // Choose the flash-loan asset dynamically
     const aavePool = AAVE.poolV3;
     const asset = TOKENS[base];
     const amount = amtIn;

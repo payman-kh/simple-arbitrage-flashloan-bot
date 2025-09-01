@@ -1,0 +1,28 @@
+# fork the mainnet
+
+#polygon
+anvil --fork-url https://polygon-mainnet.g.alchemy.com/v2/alcheny_key
+anvil --fork-url https://polygon-mainnet.infura.io/v3/c0021027eaf745f399379718cafc4e8c
+
+
+
+# arbitrum
+
+
+# optimism
+
+
+# bsc
+
+
+
+
+
+# deploy the contract
+# forked polygon
+forge script deploy/deploy.sol:DeployArb \
+    --fork-url http://127.0.0.1:8545  \
+    --broadcast \
+    --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80  (variable)
+
+contract_address: 0x4309f3FD4852F2A015F8D366fB1882aba2119852  (variable)

@@ -3,6 +3,10 @@ export const CHAIN = {
     chainId: 137
 } as const;
 
+// TEST
+// export const RPC = {
+//     polygon: process.env.RPC_URL_POLYGON || ""
+// };
 export const RPC = {
-    polygon: process.env.RPC_URL_POLYGON || ""
+    polygon: process.env.RPC_URL_POLYGON_FORKED || ""
 };
