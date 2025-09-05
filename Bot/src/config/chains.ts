@@ -8,5 +8,5 @@ export const CHAIN = {
 //     polygon: process.env.RPC_URL_POLYGON || ""
 // };
 export const RPC = {
-    polygon: process.env.RPC_URL_POLYGON_FORKED || ""
+    polygon: process.env.RPC_URL_POLYGON || ""
 };

@@ -1,14 +1,14 @@
 import { ethers } from "ethers";
-import { V2_ROUTERS } from "../config/dexes.js";
+import { DEXES } from "../config/dexes.js";
 import { TOKENS, DECIMALS } from "../config/tokens.js";
-import { getV2Quote } from "./prices.js";
+import { getV2Quote } from "./prices/prices.js";
 
 // Simple 2-leg arb between two V2 routers: buy on A, sell on B (and reverse)
 export type Opportunity = {
-    borrowToken: "USDC" | "WETH";   // 👈 new field
+    borrowToken: "USDC" | "WETH";
     direction: "AtoB" | "BtoA";
-    buyOn: "sushiswap" | "quickswap";
-    sellOn: "sushiswap" | "quickswap";
+    buyOn: "sushiswap" | "uniswap";
+    sellOn: "sushiswap" | "uniswap";
     amountIn: bigint;
     expectedOut: bigint;
     leg1Out: bigint;
@@ -24,11 +24,11 @@ export async function findSinglePairArb(
     const amtIn = ethers.parseUnits(amountInUnits, DECIMALS[baseToken]);
 
     const A = "sushiswap";
-    const B = "quickswap";
+    const B = "uniswap";
 
-    const rA = V2_ROUTERS[A];
+    const rA = DEXES[A].router;
     // @ts-ignore
-    const rB = V2_ROUTERS[B];
+    const rB = DEXES[B].router;
 
     // base -> quote on A, then quote -> base on B
     const pathA1 = [TOKENS[baseToken], TOKENS[quoteToken]];
@@ -49,6 +49,9 @@ export async function findSinglePairArb(
         const leg2 = await getV2Quote(provider, rA, leg1, pathB1);
         leg1B = leg1; leg2B = leg2; outB = leg2;
     } catch {}
+
+
+
 
     // Choose the better of the two
     const bestA = outA > amtIn ? {
