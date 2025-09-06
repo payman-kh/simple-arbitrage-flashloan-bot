@@ -6,7 +6,7 @@ import { V2_ROUTERS } from "./config/dexes.js";
 import { AAVE } from "./config/aave.js";
 import { encodeTwoLegParams } from "./utils/encoding.js";
 import { provider, makeWallet } from "./services/provider.js";
-import { findSinglePairArb } from "./services/scanner.js";
+import { findSinglePairArb } from "./services/scanner/scanner.js";
 import { aaveFlashArbCall } from "./services/arbitrage.js";
 
 console.log("ENV LOADED:", process.env.PRIVATE_KEY?.slice(0,10), process.env.RPC_URL_POLYGON);

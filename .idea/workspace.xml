@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9c0569-fef5-4cde-babb-9b94f6bdcf5c" name="Changes" comment="removed unnecessary files and cleaned up project directory">
-      <change afterPath="$PROJECT_DIR$/Bot/src/services/prices/v2-prices.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bot/src/services/prices/v3-prices.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/services/prices/PriceLimitCalculator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/services/scanner/scanner_deprecated.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/.env" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/config/chains.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/config/chains.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/config/dexes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/config/dexes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/prices/prices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/provider.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/provider.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/scanner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contract/broadcast/deploy.sol/137/run-latest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/broadcast/deploy.sol/137/run-latest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contract/deployment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/deployment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/v2-prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/prices/v2-prices.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/v3-prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/prices/v3-prices.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/scanner/scanner.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +71,7 @@
       <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src\services\scanner" />
       <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src\services\prices" />
       <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src\Config" />
     </key>
@@ -116,7 +111,7 @@
       <workItem from="1756886751370" duration="617000" />
       <workItem from="1756888971828" duration="585000" />
       <workItem from="1756902324297" duration="5968000" />
-      <workItem from="1756998714330" duration="12550000" />
+      <workItem from="1756998714330" duration="17246000" />
     </task>
     <task id="LOCAL-00001" summary="refactored chain configuration, added DEX factory helpers, and updated environment setup">
       <option name="closed" value="true" />

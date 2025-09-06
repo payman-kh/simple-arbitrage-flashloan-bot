@@ -1,30 +1,34 @@
 import { ethers } from "ethers";
+import { getOptimalSqrtPriceLimitX96 } from './PriceLimitCalculator.js';
+import { QuoteResult } from './V2Price';  // reuse the same interface
 
-// Minimal V3 Quoter ABI
 const QUOTER_ABI = [
     "function quoteExactInputSingle((address tokenIn, address tokenOut, uint24 fee, uint256 amountIn, uint160 sqrtPriceLimitX96)) external returns (uint256 amountOut)"
 ];
 
+const STANDARD_FEE_TIERS = [500, 3000, 10000];
 
-// Standard fee tiers
-const STANDARD_FEE_TIERS = [500, 3000, 10000]; // 0.05%, 0.3%, 1%
-
-export async function getV3Quote(
+export async function getV3Quotes(
     provider: ethers.Provider,
     quoterAddress: string,
     amountIn: bigint,
     baseToken: string,
-    quoteToken: string
-): Promise<{ bestOut: bigint; bestFee: number }> {
+    quoteToken: string,
+    dexName: string = "uniswapV3",
+    tokenInDecimals: number = 18,
+    tokenOutDecimals: number = 18,
+    maxSlippagePercent: number = 0.5
+): Promise<QuoteResult[]> {
+
     const quoter = new ethers.Contract(quoterAddress, QUOTER_ABI, provider);
-    let bestOut = 0n;
-    let bestFee = STANDARD_FEE_TIERS[0];
+    const results: QuoteResult[] = [];
 
     for (const fee of STANDARD_FEE_TIERS) {
+        console.log(`Checking ${dexName} fee tier ${fee}...`);
         try {
+            // Preliminary quote
             // @ts-ignore
-            console.log('calling the quoter with fee: ' + fee + '');
-            const out: bigint = await quoter.callStatic.quoteExactInputSingle({
+            const preliminaryOut: bigint = await quoter.callStatic.quoteExactInputSingle({
                 tokenIn: baseToken,
                 tokenOut: quoteToken,
                 fee: fee,
@@ -32,22 +36,39 @@ export async function getV3Quote(
                 sqrtPriceLimitX96: 0n
             });
 
-            console.log('the output is: ' + out + '');
+            // Compute safe sqrtPriceLimit
+            const sqrtPriceLimit = getOptimalSqrtPriceLimitX96(
+                amountIn,
+                preliminaryOut,
+                tokenInDecimals,
+                tokenOutDecimals,
+                maxSlippagePercent
+            );
 
-            if (out > bestOut) {
-                bestOut = out;
-                bestFee = fee;
-            }
+            // Final quote with limit
+            // @ts-ignore
+            const finalOut: bigint = await quoter.callStatic.quoteExactInputSingle({
+                tokenIn: baseToken,
+                tokenOut: quoteToken,
+                fee: fee,
+                amountIn: amountIn,
+                sqrtPriceLimitX96: sqrtPriceLimit
+            });
+
+            results.push({
+                dex: dexName,
+                fee,
+                amountOut: finalOut
+            });
+
         } catch (err) {
-            // Pool may not exist for this fee tier, skip silently
-            // do nothing.
+            console.log(`Skipping ${dexName} fee tier ${fee}, error: ${(err as any).message}`);
         }
     }
 
-    if (bestOut === 0n) {
-        throw new Error(`No V3 pool found for ${baseToken}/${quoteToken}`);
+    if (results.length === 0) {
+        throw new Error(`No ${dexName} pools found for ${baseToken}/${quoteToken}`);
     }
 
-    console.log(`Best V3 quote for ${baseToken}/${quoteToken}: ${bestOut} (fee tier ${bestFee})`);
-    return { bestOut, bestFee };
+    return results;
 }
