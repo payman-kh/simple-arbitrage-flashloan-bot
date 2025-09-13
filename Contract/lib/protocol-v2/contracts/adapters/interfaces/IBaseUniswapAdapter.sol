@@ -37,7 +37,7 @@ interface IBaseUniswapAdapter {
   function UNISWAP_ROUTER() external returns (IUniswapV2Router02);
 
   /**
-   * @dev Given an input asset amount, returns the maximum output amount of the other asset and the prices
+   * @dev Given an input asset amount, returns the maximum output amount of the other asset and the priceFetcher
    * @param amountIn Amount of reserveIn
    * @param reserveIn Address of the asset to be swap from
    * @param reserveOut Address of the asset to be swap to
@@ -63,7 +63,7 @@ interface IBaseUniswapAdapter {
     );
 
   /**
-   * @dev Returns the minimum input asset amount required to buy the given output asset amount and the prices
+   * @dev Returns the minimum input asset amount required to buy the given output asset amount and the priceFetcher
    * @param amountOut Amount of reserveOut
    * @param reserveIn Address of the asset to be swap from
    * @param reserveOut Address of the asset to be swap to

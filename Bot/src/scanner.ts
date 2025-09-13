@@ -1,8 +1,8 @@
 import { ethers } from "ethers";
-import { DEXES } from "../../config/dexes.js";
-import { TOKENS, DECIMALS } from "../../config/tokens.js";
-import { getV2Quote, QuoteResult } from "../prices/prices.js";
-import { getV3Quotes } from "../prices/v3-price.js";
+import { DEXES } from "./config/dexes.js";
+import { TOKENS, DECIMALS } from "./config/tokens.js";
+import { getV2Quote, QuoteResult } from "./services/priceFetcher/v2Prices.js";
+import { getV3Quotes } from "./services/priceFetcher/v3Prices.js";
 
 // Define the arbitrage opportunity type
 export type Opportunity = {

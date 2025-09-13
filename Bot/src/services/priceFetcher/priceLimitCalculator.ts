@@ -14,7 +14,7 @@ tokenOutDecimals: number,
 maxSlippagePercent: number
 ): bigint {
 
-// Convert amounts to normalized prices
+// Convert amounts to normalized priceFetcher
 // P = amountOut / amountIn (adjusted for decimals)
 const normalizedIn = Number(amountIn) / 10 ** tokenInDecimals;
 const normalizedOut = Number(expectedOut) / 10 ** tokenOutDecimals;

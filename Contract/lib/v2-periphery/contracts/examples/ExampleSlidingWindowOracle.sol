@@ -88,7 +88,7 @@ contract ExampleSlidingWindowOracle {
         }
     }
 
-    // given the cumulative prices of the start and end of a period, and the length of the period, compute the average
+    // given the cumulative priceFetcher of the start and end of a period, and the length of the period, compute the average
     // price in terms of how much amount out is received for the amount in
     function computeAmountOut(
         uint priceCumulativeStart, uint priceCumulativeEnd,

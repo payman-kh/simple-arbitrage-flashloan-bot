@@ -28,7 +28,7 @@
 
 //   describe('BaseUniswapAdapter', () => {
 //     describe('getAmountsOut', () => {
-//       it('should return the estimated amountOut and prices for the asset swap', async () => {
+//       it('should return the estimated amountOut and priceFetcher for the asset swap', async () => {
 //         const { weth, dai, uniswapLiquiditySwapAdapter, oracle } = testEnv;
 
 //         const amountIn = parseEther('1');

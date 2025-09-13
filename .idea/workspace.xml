@@ -5,13 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9c0569-fef5-4cde-babb-9b94f6bdcf5c" name="Changes" comment="removed unnecessary files and cleaned up project directory">
-      <change afterPath="$PROJECT_DIR$/Bot/src/services/prices/PriceLimitCalculator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bot/src/services/scanner/scanner_deprecated.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/services/priceAggregtor/priceAggregator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/services/scanner_deprecated/scanner.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/v2-prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/prices/v2-prices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/v3-prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/prices/v3-prices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/scanner/scanner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/PriceLimitCalculator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceFetcher/priceLimitCalculator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/eventSubscriber.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/v2-prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v2Prices.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/v3-prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v3Prices.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner/scanner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/scanner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner/scanner_deprecated.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/scanner_deprecated/scanner_deprecated.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/adapters/BaseUniswapAdapter.sol" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/adapters/BaseUniswapAdapter.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/adapters/interfaces/IBaseUniswapAdapter.sol" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/adapters/interfaces/IBaseUniswapAdapter.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/misc/AaveOracle.sol" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/misc/AaveOracle.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/protocol-v2/test-suites/test-aave/uniswapAdapters.base.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/protocol-v2/test-suites/test-aave/uniswapAdapters.base.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/protocol-v2/test-suites/test-amm/uniswapAdapters.base.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/protocol-v2/test-suites/test-amm/uniswapAdapters.base.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/v2-periphery/contracts/examples/ExampleSlidingWindowOracle.sol" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/v2-periphery/contracts/examples/ExampleSlidingWindowOracle.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contract/lib/v2-periphery/test/ExampleSlidingWindowOracle.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/v2-periphery/test/ExampleSlidingWindowOracle.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,29 +59,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\PeymanKheirivonyoukn\\Desktop\\stuff\\projects\\ArbitrageBots\\SimpleArbitrageFlashloanBot\\Bot\\node_modules\\typescript\\lib&quot;,
-    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot/Contract/src/Arbitrage_2.sol&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot/Bot/src/services/scanner_deprecated",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\PeymanKheirivonyoukn\\Desktop\\stuff\\projects\\ArbitrageBots\\SimpleArbitrageFlashloanBot\\Bot\\node_modules\\typescript\\lib",
+    "two.files.diff.last.used.file": "C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot/Contract/src/Arbitrage_2.sol",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src\services\scanner_deprecated" />
       <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src" />
       <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src\services\scanner" />
       <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src\services\prices" />
       <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src\Config" />
@@ -79,8 +93,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PS-251.26927.60" />
-        <option value="bundled-php-predefined-a98d8de5180a-e5747d4f5a45-com.jetbrains.php.sharedIndexes-PS-251.26927.60" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-PS-252.25557.128" />
+        <option value="bundled-php-predefined-a98d8de5180a-ce40d0652d34-com.jetbrains.php.sharedIndexes-PS-252.25557.128" />
       </set>
     </attachedChunks>
   </component>
@@ -111,7 +125,8 @@
       <workItem from="1756886751370" duration="617000" />
       <workItem from="1756888971828" duration="585000" />
       <workItem from="1756902324297" duration="5968000" />
-      <workItem from="1756998714330" duration="17246000" />
+      <workItem from="1756998714330" duration="19098000" />
+      <workItem from="1757676176110" duration="10183000" />
     </task>
     <task id="LOCAL-00001" summary="refactored chain configuration, added DEX factory helpers, and updated environment setup">
       <option name="closed" value="true" />

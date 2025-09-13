@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { DEXES } from "../../config/dexes.js";
 import { TOKENS, DECIMALS } from "../../config/tokens.js";
-import { getV2Quote } from "../prices/prices.js";
+import { getV2Quote } from "../priceFetcher/prices.js";
 
 // Simple 2-leg arb between two V2 routers: buy on A, sell on B (and reverse)
 export type Opportunity = {

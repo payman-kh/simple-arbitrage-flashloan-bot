@@ -102,7 +102,7 @@ contract AaveOracle is IPriceOracleGetter, Ownable {
     }
   }
 
-  /// @notice Gets a list of prices from a list of assets addresses
+  /// @notice Gets a list of priceFetcher from a list of assets addresses
   /// @param assets The list of assets addresses
   function getAssetsPrices(address[] calldata assets) external view returns (uint256[] memory) {
     uint256[] memory prices = new uint256[](assets.length);

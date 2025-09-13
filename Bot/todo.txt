@@ -1,0 +1,2 @@
+- decide wether fee-tiers are handled internally in v3Price or given as input
+- continue work on scanner.ts --> make the flattened price list

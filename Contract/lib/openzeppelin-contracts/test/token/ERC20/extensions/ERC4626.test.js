@@ -93,7 +93,7 @@ describe('ERC4626', function () {
         .to.emit(this.vault, 'Deposit')
         .withArgs(this.token, this.holder, reenterValue, sharesForReenter);
 
-      // Assert prices is kept
+      // Assert priceFetcher is kept
       expect(await this.vault.previewDeposit(value)).to.equal(sharesForDeposit);
     });
 

@@ -210,7 +210,7 @@ describe('ExampleSlidingWindowOracle', () => {
       let blockTimestamp: number
       let previousBlockTimestamp: number
       let previousCumulativePrices: any
-      beforeEach('add some prices', async () => {
+      beforeEach('add some priceFetcher', async () => {
         previousBlockTimestamp = (await pair.getReserves())[2]
         previousCumulativePrices = [await pair.price0CumulativeLast(), await pair.price1CumulativeLast()]
         await slidingWindowOracle.update(token0.address, token1.address, overrides)
@@ -244,7 +244,7 @@ describe('ExampleSlidingWindowOracle', () => {
 
     describe('price changes over period', () => {
       const hour = 3600
-      beforeEach('add some prices', async () => {
+      beforeEach('add some priceFetcher', async () => {
         // starting price of 1:2, or token0 = 2token1, token1 = 0.5token0
         await slidingWindowOracle.update(token0.address, token1.address, overrides) // hour 0, 1:2
         // change the price at hour 3 to 1:1 and immediately update
@@ -260,7 +260,7 @@ describe('ExampleSlidingWindowOracle', () => {
         // update at hour 9:00 (price has been 2:1 for 3 hours, invokes counterfactual)
         await mineBlock(provider, startTime + 9 * hour)
         await slidingWindowOracle.update(token0.address, token1.address, overrides)
-        // move to hour 23:00 so we can check prices
+        // move to hour 23:00 so we can check priceFetcher
         await mineBlock(provider, startTime + 23 * hour)
       })
 
