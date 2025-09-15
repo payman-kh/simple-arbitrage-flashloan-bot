@@ -5,24 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9c0569-fef5-4cde-babb-9b94f6bdcf5c" name="Changes" comment="removed unnecessary files and cleaned up project directory">
-      <change afterPath="$PROJECT_DIR$/Bot/src/services/priceAggregtor/priceAggregator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bot/src/services/scanner_deprecated/scanner.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/config/pairs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/config/pairs.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/demo.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/PriceLimitCalculator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceFetcher/priceLimitCalculator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/eventSubscriber.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/v2-prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v2Prices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/prices/v3-prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v3Prices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner/scanner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/scanner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner/scanner_deprecated.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/scanner_deprecated/scanner_deprecated.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/adapters/BaseUniswapAdapter.sol" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/adapters/BaseUniswapAdapter.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/adapters/interfaces/IBaseUniswapAdapter.sol" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/adapters/interfaces/IBaseUniswapAdapter.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/misc/AaveOracle.sol" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/protocol-v2/contracts/misc/AaveOracle.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contract/lib/protocol-v2/test-suites/test-aave/uniswapAdapters.base.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/protocol-v2/test-suites/test-aave/uniswapAdapters.base.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contract/lib/protocol-v2/test-suites/test-amm/uniswapAdapters.base.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/protocol-v2/test-suites/test-amm/uniswapAdapters.base.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contract/lib/v2-periphery/contracts/examples/ExampleSlidingWindowOracle.sol" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/v2-periphery/contracts/examples/ExampleSlidingWindowOracle.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contract/lib/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contract/lib/v2-periphery/test/ExampleSlidingWindowOracle.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Contract/lib/v2-periphery/test/ExampleSlidingWindowOracle.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/scanner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/scanner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/priceAggregtor/priceAggregator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceAggregtor/priceAggregator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v2Prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v2Prices.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v3Prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v3Prices.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner_deprecated/scanner.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner_deprecated/scanner_deprecated.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/todo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/todo.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +119,7 @@
       <workItem from="1756888971828" duration="585000" />
       <workItem from="1756902324297" duration="5968000" />
       <workItem from="1756998714330" duration="19098000" />
-      <workItem from="1757676176110" duration="10183000" />
+      <workItem from="1757676176110" duration="17210000" />
     </task>
     <task id="LOCAL-00001" summary="refactored chain configuration, added DEX factory helpers, and updated environment setup">
       <option name="closed" value="true" />

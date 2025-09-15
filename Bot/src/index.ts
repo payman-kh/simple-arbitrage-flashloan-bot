@@ -41,8 +41,8 @@ async function main() {
 
     // TODO: loop indefinitely with a cool-off period (so th bot runs 24/7)
     // 🔍 Scan both borrow-directions
-    for (const { base, quote, amount } of PAIRS) {
-        const opp = await findSinglePairArb(provider, base as any, quote as any, amount);
+    for (const pair of PAIRS) {
+        const opp = await findSinglePairArb(provider, pair);
         if (!opp) continue;
 
         const gross = opp.expectedOut;

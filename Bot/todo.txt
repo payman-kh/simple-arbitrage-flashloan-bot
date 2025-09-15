@@ -1,2 +1,3 @@
-- decide wether fee-tiers are handled internally in v3Price or given as input
-- continue work on scanner.ts --> make the flattened price list
+- add fallback polling
+- add subscription placeholder code in scanner.ts
+- start work on eventSubscriber.ts
