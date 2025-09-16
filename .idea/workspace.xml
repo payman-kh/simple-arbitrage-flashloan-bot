@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9c0569-fef5-4cde-babb-9b94f6bdcf5c" name="Changes" comment="removed unnecessary files and cleaned up project directory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/config/pairs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/config/pairs.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/demo.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/scanner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/scanner.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/src/services/priceAggregtor/priceAggregator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceAggregtor/priceAggregator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v2Prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v2Prices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v3Prices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceFetcher/v3Prices.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner_deprecated/scanner.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/scanner_deprecated/scanner_deprecated.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/todo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/todo.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,25 +44,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot/Bot/src/services/scanner_deprecated",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\PeymanKheirivonyoukn\\Desktop\\stuff\\projects\\ArbitrageBots\\SimpleArbitrageFlashloanBot\\Bot\\node_modules\\typescript\\lib",
-    "two.files.diff.last.used.file": "C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot/Contract/src/Arbitrage_2.sol",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot/Bot/src/services/scanner_deprecated&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\PeymanKheirivonyoukn\\Desktop\\stuff\\projects\\ArbitrageBots\\SimpleArbitrageFlashloanBot\\Bot\\node_modules\\typescript\\lib&quot;,
+    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/PeymanKheirivonyoukn/Desktop/stuff/projects/ArbitrageBots/SimpleArbitrageFlashloanBot/Contract/src/Arbitrage_2.sol&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\PeymanKheirivonyoukn\Desktop\stuff\projects\ArbitrageBots\SimpleArbitrageFlashloanBot\Bot\src\services\scanner_deprecated" />
@@ -119,7 +111,7 @@
       <workItem from="1756888971828" duration="585000" />
       <workItem from="1756902324297" duration="5968000" />
       <workItem from="1756998714330" duration="19098000" />
-      <workItem from="1757676176110" duration="17210000" />
+      <workItem from="1757676176110" duration="22001000" />
     </task>
     <task id="LOCAL-00001" summary="refactored chain configuration, added DEX factory helpers, and updated environment setup">
       <option name="closed" value="true" />

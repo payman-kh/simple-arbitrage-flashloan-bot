@@ -8,7 +8,7 @@ import {Pair} from "../../config/pairs.js";
 // ---------- Types ----------
 export type DexQuote = {  // quote result from querying a dex
     name: string;   // name of the dex: uniswap, sushiswap, ...
-    amountIn: number;
+    amountIn: bigint;
     baseToken: string;
     quoteToken: string;
     amountOut: number;
@@ -18,7 +18,7 @@ export type DexQuote = {  // quote result from querying a dex
 
 // array of aggregated quotes for each pair
 export type AggregatedQuotes = {
-    pair: [string, string];
+    pair: Pair;
     results: DexQuote[];
 }[];
 
@@ -31,10 +31,10 @@ export type DexConfig = {
 };
 
 // ---------- Input options ----------
-export type AggregatorOptions = {
-    dexes?: DexConfig[];    // full config objects
-    dexNames?: string[];    // names to fetch from DEXES
-};
+// export type AggregatorOptions = {
+//     dexes?: DexConfig[];    // full config objects
+//     dexNames?: string[];    // names to fetch from DEXES
+// };
 
 // ---------- Main aggregator ----------
 export async function getPrices(
@@ -56,7 +56,7 @@ export async function getPrices(
 
         for (const dex of dexConfigs) {
             // @ts-ignore
-            const amountIn = ethers.parseUnits(amountIn.toString(), DECIMALS[baseToken]);
+            const amount = ethers.parseUnits(amountIn.toString(), DECIMALS[baseToken]);
 
             // add prices of the uniswapv2 or sushiswap to the price list
             if (dex.type === "v2" && dex.router) {
@@ -65,7 +65,7 @@ export async function getPrices(
                     await getV2Quote(
                         provider,
                         dex.router,
-                        amountIn,
+                        amount,
                         // @ts-ignore
                         [TOKENS[baseToken], TOKENS[quoteToken]],
                         dex.name
@@ -73,12 +73,13 @@ export async function getPrices(
 
                 pairResults.push({
                     name: dex.name,
-                    amountIn,
+                    amountIn: amount,
                     baseToken,
                     quoteToken,
                     // @ts-ignore
                     amountOut: Number(ethers.formatUnits(quote.amountOut, DECIMALS[quoteToken])),
-                    price: Number(quote.amountOut) / amountIn
+                    // @ts-ignore
+                    price: Number(quote.amountOut) / amount
                 });
 
             }
@@ -91,7 +92,7 @@ export async function getPrices(
                     await getV3Quotes(
                         provider,
                         dex.quoter,
-                        amountIn,
+                        amount,
                         // @ts-ignore
                         TOKENS[baseToken],
                         // @ts-ignore
@@ -101,7 +102,7 @@ export async function getPrices(
                 for (const q of quotes) {
                     pairResults.push({
                         name: dex.name,
-                        amountIn,
+                        amountIn: amount,
                         baseToken,
                         quoteToken,
                         // @ts-ignore
