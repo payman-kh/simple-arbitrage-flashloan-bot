@@ -17,7 +17,7 @@ export type DexQuote = {  // quote result from querying a dex
 };
 
 // array of aggregated quotes for each pair
-export type AggregatedQuotes = {
+export type PriceList = {
     pair: Pair;
     results: DexQuote[];
 }[];
@@ -30,25 +30,21 @@ export type DexConfig = {
     //feeTier?: number;  // optional, for V3
 };
 
-// ---------- Input options ----------
-// export type AggregatorOptions = {
-//     dexes?: DexConfig[];    // full config objects
-//     dexNames?: string[];    // names to fetch from DEXES
-// };
+
 
 // ---------- Main aggregator ----------
 export async function getPrices(
     provider: ethers.Provider,
     pairs: Pair[],
     dexNames: string[]
-): Promise<AggregatedQuotes> {
+): Promise<PriceList> {
 
     // Determine which DEX configs to use
     // @ts-ignore
     let dexConfigs: DexConfig[] = dexNames.map(name => DEXES[name]);
 
 
-    const aggregated: AggregatedQuotes = [];
+    const priceList: PriceList = [];
 
     for (const pair of pairs) {
         const {baseToken, quoteToken, amountIn} = pair;
@@ -113,11 +109,11 @@ export async function getPrices(
             }
         }
 
-        aggregated.push({
+        priceList.push({
             pair,
             results: pairResults
         });
     }
 
-    return aggregated;
+    return priceList;
 }

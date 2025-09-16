@@ -5,10 +5,12 @@ things to consider
 4. pairs
 5. gas/flashloan fees
 
+
 things to make dynamic
 1. borrow amount
 2. slippage buffer
 3. minimum profit threshold
+4. interval ms
 
 Same from the gpt:
 ✅ Things to Consider (static / predefined choices in code)
@@ -32,3 +34,8 @@ Same from the gpt:
 5. Execution Gas Limit – estimate & adapt depending on contract complexity.
 6. Routing Logic – best path across pairs and DEX versions (could shift per block).
 7. Price Feed Cross-Check – (optional) use Chainlink oracles to confirm no manipulation.
+
+
+Optimization Point:
+Each chain gets its own scanner file, even though the logic in the function is almost the same.
+But this way they can all be run in parallel by calling them from the main scanner.
