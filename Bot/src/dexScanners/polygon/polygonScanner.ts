@@ -3,6 +3,8 @@ import {TOKENS} from "../../config/tokens.js";
 import {Pair} from "../../config/pairs.js";
 import {PriceList, getPrices} from "../../services/priceAggregtor/priceAggregator.js"
 import {comparePriceLists} from "../../utils/priceListComparison.js";
+import {subscribeOnChainEvents} from "../../services/eventSubscriber/subscribeOnChainEvents.js";
+
 
 // Define the arbitrage opportunity type
 export type Opportunity = {
@@ -25,7 +27,7 @@ export async function findSinglePairArbPolygon(
 
     // vars
     let priceList: PriceList,
-    intervalMs: number = 3000; // the interval should also be dynamic/different per chain
+        intervalMs: number = 3000; // the interval should also be dynamic/different per chain
 
     try {
         // make initial price list
@@ -36,21 +38,29 @@ export async function findSinglePairArbPolygon(
         );
 
 
+        console.log('stating the subscription');
+        console.log('initial list:');
+        console.log(priceList)
+
+        //todo: continue here
         // do the subscriptions
-        // for (const pair of pairs) {
-        //     await subscribeOnChainEvents({
-        //         provider,
-        //         pair,
-        //         dexNames,
-        //         onEvent: async (eventName, eventData) => {
-        //             console.log(`[Polygon] Event received: ${eventName}`, eventData);
-        //             // later: trigger re-fetch or incremental update of priceList
-        //             // e.g. priceList = await getPrices(provider, pairs, dexNames);
-        //         }
-        //     });
-        // }
+        for (const {pair, results} of priceList) {
+            await subscribeOnChainEvents({
+                provider,
+                pair,
+                dexNames,
+                onEvent: async (eventName: any, eventData: any) => {
+                    console.log(`[Polygon] Event received: ${eventName}`, eventData);
+                    console.log('updating the pricelist')
 
+                    // todo: add the real logic here.
+                    // for now, we just update the price list
+                    priceList = await getPrices(provider, pairs, dexNames);
+                }
+            });
+        }
 
+        // todo: make the interval dynamic/different per chain
         // fallback polling every 3 seconds
         setInterval(async () => {
             const newPrices: PriceList = await getPrices(

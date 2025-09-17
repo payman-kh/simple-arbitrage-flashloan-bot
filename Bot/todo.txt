@@ -1,7 +1,7 @@
 To-do list:
 - dig into the events.ts
-- check events sample snippet
-- start working on eventSubscriber.ts
+- build the for loop in scanner.ts
+- build the subscriber and bypass the dexes
 
 
 
@@ -10,8 +10,19 @@ To-do list:
 
 Things for later:
 A couple of minor notes before we move on:
-- setInterval is unbounded – if the processing inside the interval ever takes longer than intervalMs,
+- setInterval in scanner.ts is unbounded – if the processing inside the interval ever takes longer than intervalMs,
   calls could overlap. Later you might want a “self-adjusting” loop with setTimeout or while(true) +
   await sleep(intervalMs) to avoid overlapping requests.
 - The interval is currently hard-coded for Polygon (3000ms) — you mentioned you’ll make it dynamic per
   chain, which is fine.
+
+When responding to a lp event:
+- Ultra-optimized (harder, later)
+  Sometimes the event data itself gives you enough info to update state without even re-fetching:
+  A Sync(reserve0, reserve1) event literally tells you the new reserves.
+  From reserves you can compute price instantly (price = reserve1 / reserve0 adjusted for decimals).
+  ✅ No RPC calls, super fast.
+  ❌ But you need to maintain formulas per DEX type (V2, V3, Curve, Balancer all differ).
+
+There is also a uniswapv4 which is really different:
+- learn it

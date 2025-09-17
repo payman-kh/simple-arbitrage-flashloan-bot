@@ -8,11 +8,11 @@ export const PAIRS : Pair[] = [
     {
         baseToken: "USDC",
         quoteToken: "WETH",
-        amountIn: 1000  // borrow 1,000 USDC
+        amountIn: 1000  //todo: make this dynamic: borrow 1,000 USDC
     },
     {
         baseToken: "WETH",
         quoteToken: "USDC",
-        amountIn: 1  // borrow 1 WETH
+        amountIn: 1  // todo: make this dynamic: borrow 1 WETH
     }
 ]

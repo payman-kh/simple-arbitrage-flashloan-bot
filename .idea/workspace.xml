@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9c0569-fef5-4cde-babb-9b94f6bdcf5c" name="Changes" comment="removed unnecessary files and cleaned up project directory">
-      <change afterPath="$PROJECT_DIR$/Bot/src/services/eventSubscriber/eventSubscriber.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bot/src/services/eventSubscriber/events.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bot/src/services/eventSubscriber/onChainEvents.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bot/src/utils/priceListComparison.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bot/src/services/eventSubscriber/subscribeOnChainEvents.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/scanner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/dexScanners/polygon/polygonScanner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/src/services/eventSubscriber.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/dexScanners/mainScanner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/config/pairs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/config/pairs.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/dexScanners/polygon/polygonScanner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/dexScanners/polygon/polygonScanner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/eventSubscriber/eventSubscriber.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/config/liquidiyPools.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/src/services/eventSubscriber/onChainEvents.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/eventSubscriber/subscribeOffChainEvents.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/src/services/priceAggregtor/priceAggregator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/src/services/priceAggregtor/priceAggregator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/todo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/todo.txt" afterDir="false" />
     </list>
@@ -120,7 +117,8 @@
       <workItem from="1756888971828" duration="585000" />
       <workItem from="1756902324297" duration="5968000" />
       <workItem from="1756998714330" duration="19098000" />
-      <workItem from="1757676176110" duration="31882000" />
+      <workItem from="1757676176110" duration="34155000" />
+      <workItem from="1758111422909" duration="9314000" />
     </task>
     <task id="LOCAL-00001" summary="refactored chain configuration, added DEX factory helpers, and updated environment setup">
       <option name="closed" value="true" />

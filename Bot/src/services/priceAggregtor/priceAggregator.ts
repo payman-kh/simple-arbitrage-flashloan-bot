@@ -13,7 +13,7 @@ export type DexQuote = {  // quote result from querying a dex
     quoteToken: string;
     amountOut: number;
     price: number;
-    //feeTier?: number; // optional, only for V3
+    fee?: number;
 };
 
 // array of aggregated quotes for each pair
@@ -103,6 +103,7 @@ export async function getPrices(
                         quoteToken,
                         // @ts-ignore
                         amountOut: Number(ethers.formatUnits(q.amountOut, DECIMALS[quoteToken])),
+                        fee: q.fee,
                         price: Number(q.amountOut) / amountIn,
                     });
                 }
